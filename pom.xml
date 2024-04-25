@@ -9,12 +9,20 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>19</maven.compiler.source>
-        <maven.compiler.target>19</maven.compiler.target>
+        <luwrain.version>2.0.0pre1</luwrain.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
+
+      <dependency>
+        <groupId>org.luwrain</groupId>
+        <artifactId>luwrain</artifactId>
+        <version>${luwrain.version}</version>
+      </dependency>
+
 
         <dependency>
             <groupId>com.squareup.retrofit2</groupId>
@@ -51,6 +59,14 @@
 
 
     </dependencies>
+
+    <repositories>
+      <repository>
+        <id>luwrain</id>
+        <name>luwrain</name>
+        <url>https://download.luwrain.org/maven2/</url>
+      </repository>
+    </repositories>
 
 
 
