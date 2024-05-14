@@ -1,18 +1,3 @@
-/*
-   Copyright 2012-2024 Michael Pozhidaev <msp@luwrain.org>
-
-   This file is part of LUWRAIN.
-
-   LUWRAIN is free software; you can redistribute it and/or
-   modify it under the terms of the GNU General Public
-   License as published by the Free Software Foundation; either
-   version 3 of the License, or (at your option) any later version.
-
-   LUWRAIN is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   General Public License for more details.
-*/
 
 package org.luwrain.app.mastodon;
 
@@ -32,9 +17,10 @@ public final class App extends AppBase<Strings>
     static final String
 	LOG_COMPONENT = "notepad";
 
-    Settings sett = null;
+    Data data = null;
     private Conversations conv = null;
     private MainLayout mainLayout = null;
+    private StartingLayout startingLayout = null;
 
     public App()
     {
@@ -45,8 +31,9 @@ public final class App extends AppBase<Strings>
     {
 	this.conv = new Conversations(this);
 	this.mainLayout = new MainLayout(this);
+	this.startingLayout = new StartingLayout(this);
 	setAppName(getStrings().appName());
-	return mainLayout.getAreaLayout();
+	return startingLayout.getAreaLayout();
     }
 
     @Override public boolean onEscape()
@@ -56,5 +43,4 @@ public final class App extends AppBase<Strings>
     }
 
             Conversations getConv() { return this.conv; }
-    Settings getSett() { return this.sett; }
 }
