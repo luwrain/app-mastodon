@@ -8,5 +8,8 @@ public interface Strings
     String appName();
     
     String wizardIntro();
+    String wizardName();
+    String wizardMail();
+    String wizardPassword();
     String wizardContinue();
     }

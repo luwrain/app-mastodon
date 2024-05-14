@@ -17,7 +17,7 @@ public final class App extends AppBase<Strings>
     static final String
 	LOG_COMPONENT = "notepad";
 
-    Data data = null;
+    private Data data = null;
     private Conversations conv = null;
     private MainLayout mainLayout = null;
     private StartingLayout startingLayout = null;
@@ -29,11 +29,14 @@ public final class App extends AppBase<Strings>
 
     @Override protected AreaLayout onAppInit() throws IOException
     {
+	this.data = new Data(getLuwrain());
 	this.conv = new Conversations(this);
 	this.mainLayout = new MainLayout(this);
 	this.startingLayout = new StartingLayout(this);
 	setAppName(getStrings().appName());
-	return startingLayout.getAreaLayout();
+	if (data.sett.getToken("").trim().isEmpty())
+		return startingLayout.getAreaLayout();
+return mainLayout.getAreaLayout();
     }
 
     @Override public boolean onEscape()
@@ -43,4 +46,5 @@ public final class App extends AppBase<Strings>
     }
 
             Conversations getConv() { return this.conv; }
+    Data getData() { return data; }
 }
