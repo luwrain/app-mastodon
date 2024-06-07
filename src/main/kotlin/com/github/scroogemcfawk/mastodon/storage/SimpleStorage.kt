@@ -1,4 +1,4 @@
-package com.github.scroogemcfawk.mastodon.util
+package com.github.scroogemcfawk.mastodon.storage
 
 import com.github.scroogemcfawk.util.IDebuggable
 import com.google.gson.Gson

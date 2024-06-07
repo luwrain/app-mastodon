@@ -1,6 +1,6 @@
 package com.github.scroogemcfawk.mastodon
 
-import com.github.scroogemcfawk.mastodon.api.Mastodon
+import com.github.scroogemcfawk.mastodon.client.Mastodon
 import com.github.scroogemcfawk.util.IDebuggable
 
 fun main() {
@@ -13,7 +13,7 @@ fun main() {
         val mastodon = Mastodon("techhub.social", true)
 
         val user = System.getenv("USER_1")!!
-        val password = System.getenv("PASSW")!!
+        val password = System.getenv("PASSWD")!!
 
         mastodon.login(user, password)
 

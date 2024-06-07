@@ -1,19 +1,12 @@
 
 package org.luwrain.app.mastodon;
 
-import java.util.*;
-import java.io.*;
-
-import com.github.scroogemcfawk.mastodon.api.Mastodon;
-//import okhttp3.OkHttpClient;
-import org.luwrain.core.*;
+import com.github.scroogemcfawk.mastodon.client.MastodonStub;
 import org.luwrain.controls.*;
 import org.luwrain.app.base.*;
 
 import org.luwrain.controls.WizardArea.Frame;
 import org.luwrain.controls.WizardArea.WizardValues;
-
-import static org.luwrain.core.DefaultEventResponse.*;
 
 final class StartingLayout extends LayoutBase {
     final App app;
@@ -41,12 +34,11 @@ final class StartingLayout extends LayoutBase {
                 email = values.getText(0).trim(),
                 passwd = values.getText(1);
         try {
-            System.err.println("VARIANT 1");
             final boolean debug = true;
             final boolean debugTimer = true;
-            final var mastodon = new Mastodon("techhub.social", debug, debugTimer);
+            final var mastodon = new MastodonStub();
             mastodon.login(email, passwd);
-            app.message("You are logged in as " + mastodon.getMe().getAcct());
+            app.message("You are logged in as " + mastodon.getMe().getUsername());
         } catch (Exception ex) {
             app.crash(ex);
         }

@@ -1,4 +1,4 @@
-package com.github.scroogemcfawk.mastodon.util
+package com.github.scroogemcfawk.mastodon.storage
 
 import social.bigbone.api.entity.Application
 import social.bigbone.api.entity.Token

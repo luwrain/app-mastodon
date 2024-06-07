@@ -1,8 +1,8 @@
-package com.github.scroogemcfawk.mastodon.api
+package com.github.scroogemcfawk.mastodon.client
 
 import com.github.scroogemcfawk.util.IDebuggable
-import com.github.scroogemcfawk.mastodon.util.IStorage
-import com.github.scroogemcfawk.mastodon.util.SimpleStorage
+import com.github.scroogemcfawk.mastodon.storage.IStorage
+import com.github.scroogemcfawk.mastodon.storage.SimpleStorage
 import social.bigbone.MastodonClient
 import social.bigbone.MastodonRequest
 import social.bigbone.api.Pageable

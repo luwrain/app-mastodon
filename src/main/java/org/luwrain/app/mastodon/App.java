@@ -1,15 +1,15 @@
 
 package org.luwrain.app.mastodon;
 
-import java.util.*;
-import java.util.concurrent.*;
 import java.io.*;
 
+import com.github.scroogemcfawk.mastodon.client.IMastodon;
+import com.github.scroogemcfawk.mastodon.client.MastodonStub;
+import com.github.scroogemcfawk.mastodon.client.Timeline;
+import org.luwrain.app.mastodon.layouts.LoginLayout;
+import org.luwrain.app.mastodon.layouts.MenuLayout;
+import org.luwrain.app.mastodon.layouts.TimelineLayout;
 import org.luwrain.core.*;
-import org.luwrain.core.events.*;
-import org.luwrain.controls.*;
-import org.luwrain.controls.edit.*;
-import org.luwrain.speech.*;
 import org.luwrain.app.base.*;
 
 public final class App extends AppBase<Strings> {
@@ -21,7 +21,9 @@ public final class App extends AppBase<Strings> {
     private MainLayout mainLayout = null;
     private StartingLayout startingLayout = null;
 
-    public App() {
+    public IMastodon client;
+
+    public App() throws IOException {
         super(Strings.NAME, Strings.class, "luwrain.notepad");
     }
 
@@ -29,12 +31,8 @@ public final class App extends AppBase<Strings> {
     protected AreaLayout onAppInit() throws IOException {
         this.data = new Data(getLuwrain());
         this.conv = new Conversations(this);
-        this.mainLayout = new MainLayout(this);
-        this.startingLayout = new StartingLayout(this);
         setAppName(getStrings().appName());
-        if (data.sett.getToken("").trim().isEmpty())
-            return startingLayout.getAreaLayout();
-        return mainLayout.getAreaLayout();
+        return getTimelineScreen();
     }
 
     @Override
@@ -49,5 +47,27 @@ public final class App extends AppBase<Strings> {
 
     Data getData() {
         return data;
+    }
+
+    public AreaLayout getLoginScreen() {
+        return new LoginLayout(this).getAreaLayout();
+    }
+
+    public AreaLayout getTimelineScreen() {
+        this.client = new MastodonStub("techhub.social");
+        client.login("a", "a");
+        return new TimelineLayout(this, Timeline.HOME).getAreaLayout();
+    }
+
+    public void switchToLogin() {
+        setAreaLayout(new LoginLayout(this));
+    }
+
+    public void switchToMenu() {
+        setAreaLayout(new MenuLayout(this));
+    }
+
+    public void switchToTimeline(Timeline timeline) {
+        setAreaLayout(new TimelineLayout(this, timeline));
     }
 }

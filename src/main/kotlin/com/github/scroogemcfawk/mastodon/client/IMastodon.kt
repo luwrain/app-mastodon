@@ -1,4 +1,4 @@
-package com.github.scroogemcfawk.mastodon.api
+package com.github.scroogemcfawk.mastodon.client
 
 import social.bigbone.api.Pageable
 import social.bigbone.api.entity.Account
